@@ -1,0 +1,13 @@
+{
+    "name": "Venue",
+    "description": "Venue Operations Extension",
+    "author": "Ahsanul Kabir",
+    "url": "https://github.com/",
+    "version": "1.0.0",
+    "config": {
+        "handles": "Venue"
+    },
+    "provides": [
+        "Blupl\\Venue\\VenueServiceProvider"
+    ]
+}
