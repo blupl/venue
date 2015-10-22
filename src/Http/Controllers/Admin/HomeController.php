@@ -1,14 +1,14 @@
-<?php namespace Blupl\Franchises\Http\Controllers\Admin;
+<?php namespace Blupl\Venue\Http\Controllers\Admin;
 
-use Blupl\Franchises\Model\Franchises;
+use Blupl\Venue\Model\Venue;
 use Illuminate\Support\Facades\Input;
-use Blupl\Franchises\Processor\Franchises as FranchisesProcessor;
+use Blupl\Venue\Processor\Venue as VenueProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class HomeController extends AdminController
 {
 
-    public function __construct(FranchisesProcessor $processor)
+    public function __construct(VenueProcessor $processor)
     {
         $this->processor = $processor;
 
@@ -32,9 +32,9 @@ class HomeController extends AdminController
 
     public function indexSucceed(array $data)
     {
-        set_meta('title', 'blupl/franchises::title.franchises');
+        set_meta('title', 'blupl/venue::title.venue');
 
-        return view('blupl/franchises::index', $data);
+        return view('blupl/venue::index', $data);
     }
 
 
@@ -45,9 +45,9 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-    public function show($franchises)
+    public function show($venue)
     {
-        return $this->edit($franchises);
+        return $this->edit($venue);
     }
 
     /**
@@ -67,9 +67,9 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function edit($franchises)
+     public function edit($venue)
      {
-        return $this->processor->edit($this, $franchises);
+        return $this->processor->edit($this, $venue);
      }
 
     /**
@@ -89,9 +89,9 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-    public function update($franchises)
+    public function update($venue)
     {
-        return $this->processor->update($this, Input::all(), $franchises);
+        return $this->processor->update($this, Input::all(), $venue);
     }
 
     /**
@@ -101,9 +101,9 @@ class HomeController extends AdminController
      *
      * @return mixed;
      */
-    public function delete($franchises)
+    public function delete($venue)
     {
-        return $this->destroy($franchises);
+        return $this->destroy($venue);
     }
 
     /**
@@ -113,9 +113,9 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-    public function destroy($franchises)
+    public function destroy($venue)
     {
-        return $this->processor->destroy($this, $franchises);
+        return $this->processor->destroy($this, $venue);
     }
 
 
@@ -128,9 +128,9 @@ class HomeController extends AdminController
      */
     public function createSucceed(array $data)
     {
-        set_meta('title', trans('blupl/franchises::title.franchises.create'));
+        set_meta('title', trans('blupl/venue::title.venue.create'));
 
-        return view('blupl/franchises::edit', $data);
+        return view('blupl/venue::edit', $data);
     }
 
     /**
@@ -142,9 +142,9 @@ class HomeController extends AdminController
      */
     public function editSucceed(array $data)
     {
-        set_meta('title', trans('blupl/franchises::title.franchises.update'));
+        set_meta('title', trans('blupl/venue::title.venue.update'));
 
-        return view('blupl/franchises::edit', $data);
+        return view('blupl/venue::edit', $data);
     }
 
     /**
@@ -152,11 +152,11 @@ class HomeController extends AdminController
      *
      * @param  object  $validation
      *
-  ;   * @return mixed
+     * @return mixed
      */
      public function storeValidationFailed($validation)
      {
-        return $this->redirectWithErrors(handles('orchestra::franchises/reporter/create'), $validation);
+        return $this->redirectWithErrors(handles('orchestra::venue/reporter/create'), $validation);
      }
 
     /**
@@ -170,7 +170,7 @@ class HomeController extends AdminController
      {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
+        return $this->redirectWithMessage(handles('orchestra::venue/reporter'), $message);
      }
 
     /**
@@ -180,13 +180,13 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function storeSucceed(franchises $franchises)
+     public function storeSucceed(venue $venue)
      {
-        $message = trans('blupl/franchises::response.franchises.create', [
-            'name' => $franchises->getAttribute('name')
+        $message = trans('blupl/venue::response.venue.create', [
+            'name' => $venue->getAttribute('name')
         ]);
 
-            return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
+            return $this->redirectWithMessage(handles('orchestra::venue/reporter'), $message);
      }
 
     /**
@@ -199,7 +199,7 @@ class HomeController extends AdminController
      */
      public function updateValidationFailed($validation, $id)
      {
-        return $this->redirectWithErrors(handles("orchestra::franchises/reporter/{$id}/edit"), $validation);
+        return $this->redirectWithErrors(handles("orchestra::venue/reporter/{$id}/edit"), $validation);
      }
 
     /**
@@ -213,19 +213,19 @@ class HomeController extends AdminController
      {
         $message = trans('orchestra/foundation::response.db-failed', $errors);
 
-        return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
+        return $this->redirectWithMessage(handles('orchestra::venue/reporter'), $message);
      }
 
     /**
      * Response when updating role succeed.
      */
-    public function updateSucceed(franchises $franchises)
+    public function updateSucceed(venue $venue)
     {
         $message = trans('orchestra/control::response.roles.update', [
-            'name' => $franchises->getAttribute('name')
+            'name' => $venue->getAttribute('name')
         ]);
 
-        return $this->redirectWithMessage(handles('orchestra::franchises'), $message);
+        return $this->redirectWithMessage(handles('orchestra::venue'), $message);
     }
 
     /**
@@ -239,7 +239,7 @@ class HomeController extends AdminController
     {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::franchises'), $message);
+        return $this->redirectWithMessage(handles('orchestra::venue'), $message);
     }
 
     /**
@@ -249,13 +249,13 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-    public function destroySucceed(franchises $franchises)
+    public function destroySucceed(venue $venue)
     {
         $message = trans('orchestra/control::response.roles.delete', [
-            'name' => $franchises->getAttribute('name')
+            'name' => $venue->getAttribute('name')
         ]);
 
-   ;     return $this->redirectWithMessage(handles('orchestra::franchises'), $message);
+   ;     return $this->redirectWithMessage(handles('orchestra::venue'), $message);
     }
 
     /**
