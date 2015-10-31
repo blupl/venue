@@ -3,7 +3,7 @@
 
 use Orchestra\Support\Providers\ServiceProvider;
 
-class FranchiseServiceProvider extends ServiceProvider
+class VenueServiceProvider extends ServiceProvider
 {
     /**
      * Register service provider.
@@ -12,7 +12,7 @@ class FranchiseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->bind('Orchestra\Control\Contracts\Command\Synchronizer', 'Orchestra\Control\Command\Synchronizer');
+        //
     }
 
     /**
@@ -29,25 +29,11 @@ class FranchiseServiceProvider extends ServiceProvider
         $this->addViewComponent('blupl/venue', 'blupl/venue', $path.'/resources/views');
 
         $this->mapExtensionConfig();
-//        $this->bootExtensionEvents();
         $this->bootExtensionRouting($path);
         $this->bootExtensionMenuEvents();
-//        $this->bootTimezoneEvents();
     }
 
-    /**
-     * Boot extension events.
-     *
-     * @return void
-     */
-//    protected function bootExtensionEvents()
-//    {
-//        $events  = $this->app['events'];
-//        $handler = 'Orchestra\Control\ExtensionConfigHandler';
-//
-//        $events->listen('orchestra.form: extension.orchestra/control', "{$handler}@onViewForm");
-//        $events->listen('orchestra.saved: extension.orchestra/control', "{$handler}@onSaved");
-//    }
+
 
     /**
      * Boot extension menu handler.
@@ -74,19 +60,7 @@ class FranchiseServiceProvider extends ServiceProvider
         require_once "{$path}/src/routes.php";
     }
 
-    /**
-     * Boot timezone events.
-     *
-     * @return void
-     */
-//    protected function bootTimezoneEvents()
-//    {
-//        $events  = $this->app['events'];
-//        $handler = 'Orchestra\Control\Timezone\UserHandler';
-//
-//        $events->listen('orchestra.form: user.account', "{$handler}@onViewForm");
-//        $events->listen('orchestra.saved: user.account', "{$handler}@onSaved");
-//    }
+
 
     /**
      * Map extension config.
@@ -96,7 +70,6 @@ class FranchiseServiceProvider extends ServiceProvider
     protected function mapExtensionConfig()
     {
         $this->app['orchestra.extension.config']->map('blupl/venue', [
-//            'localtime'   => 'orchestra/control::localtime.enable',
             'admin_role'  => 'orchestra/foundation::roles.admin',
             'member_role' => 'orchestra/foundation::roles.member',
         ]);

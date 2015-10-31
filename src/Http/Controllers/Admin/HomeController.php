@@ -2,16 +2,13 @@
 
 use Blupl\Venue\Model\Venue;
 use Illuminate\Support\Facades\Input;
-use Blupl\Venue\Processor\Venue as VenueProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
 class HomeController extends AdminController
 {
 
-    public function __construct(VenueProcessor $processor)
+    public function __construct()
     {
-        $this->processor = $processor;
-
         parent::__construct();
     }
 

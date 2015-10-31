@@ -1,9 +1,9 @@
 <?php namespace Blupl\Venue\Http\Handlers;
 
-use Orchestra\Foundation\Venue\MenuHandler;
 use Orchestra\Contracts\Authorization\Authorization;
+use Orchestra\Foundation\Support\MenuHandler;
 
-class FranchiseMenuHandler extends MenuHandler
+class VenueMenuHandler extends MenuHandler
 {
     /**
      * Menu configuration.
