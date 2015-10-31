@@ -1,6 +1,7 @@
 <?php namespace Blupl\Venue;
 
-use Orchestra\Venue\Providers\ServiceProvider;
+
+use Orchestra\Support\Providers\ServiceProvider;
 
 class FranchiseServiceProvider extends ServiceProvider
 {
