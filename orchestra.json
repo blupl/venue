@@ -5,7 +5,7 @@
     "url": "https://github.com/",
     "version": "1.0.0",
     "config": {
-        "handles": "Venue"
+        "handles": "venue"
     },
     "provides": [
         "Blupl\\Venue\\VenueServiceProvider"
